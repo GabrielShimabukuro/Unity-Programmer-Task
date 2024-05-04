@@ -3,10 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ItemType
+{
+    Hair,
+    Hat,
+    Body,
+    Pants,
+    Shoes
+}
 
 [CreateAssetMenu(menuName = "Item Data")]
 public class Item : ScriptableObject
 {
+    public ItemType itemType;
     public int id;
     public string Name;
     public string Description;
