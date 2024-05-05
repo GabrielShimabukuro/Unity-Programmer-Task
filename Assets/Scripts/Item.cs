@@ -20,6 +20,7 @@ public class Item : ScriptableObject
     public string Name;
     public string Description;
     public Sprite Sprite;
+    public Sprite SpriteSheet;
     public int Price;
     public int sellAmount;
 }

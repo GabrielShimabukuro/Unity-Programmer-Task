@@ -5,7 +5,12 @@ using UnityEngine.UI;
 
 public class TabGroup : MonoBehaviour
 {
+    public ShopManager shopManager;
     public List<TabButton> tabButtons;
+
+    [Header("Inventory")]
+    public TabButton inventoryTab;
+    public GameObject inventoryPage;
 
     [Header("Tab Sprites")]
     public Sprite tabIdle;
@@ -14,12 +19,13 @@ public class TabGroup : MonoBehaviour
 
     public TabButton selectedTab;
     public List<GameObject> objectsToSwap = new List<GameObject>();
+  
 
     private void Start()
     {
         ResetTabs();
-        OnTabEnter(tabButtons[tabButtons.Count - 1]);
-        OnTabSelected(tabButtons[tabButtons.Count-1]);
+        OnTabEnter(tabButtons[1]);
+        OnTabSelected(tabButtons[1]);
     }
 
     public void Subscribe(TabButton button)
@@ -54,6 +60,7 @@ public class TabGroup : MonoBehaviour
         selectedTab = button;
         ResetTabs();
         button.background.sprite = tabActive;
+       
         //IMPORTANT! because this system uses the Sibling Index the tabs and panels needs to be on the same order.
         int index = button.transform.GetSiblingIndex();
         for (int i = 0; i < objectsToSwap.Count; i++)
@@ -67,6 +74,17 @@ public class TabGroup : MonoBehaviour
                 objectsToSwap[i].SetActive(false);
             }
         }    
+
+        if(selectedTab == inventoryTab)
+        {
+            shopManager.InventoryOpen();
+        }
+        else
+        {
+            shopManager.InventoryClose();
+        }
+        
+        
     }
 
     public void ResetTabs()
