@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 69444655893319948}
   - component: {fileID: 69444655893319939}
   - component: {fileID: 69444655893319949}
+  - component: {fileID: 1575190080037218451}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -32,8 +33,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6290414790503480338}
   - {fileID: 3473295335596018821}
+  - {fileID: 6290414790503480338}
   - {fileID: 2172592213138984374}
   - {fileID: 2331271432277900602}
   - {fileID: 7511085436638754632}
@@ -153,6 +154,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.48332095, y: 0.3417251}
   m_EdgeRadius: 0
+--- !u!114 &1575190080037218451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69444655893319936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa012675a17237449bf7cf25aefc85be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clothPieces:
+  - {fileID: 1895785608039536461}
+  - {fileID: 7359661963850892339}
+  - {fileID: 9012522659748765067}
+  - {fileID: 2343433462594747566}
+  - {fileID: 2165489884202294364}
 --- !u!1 &2537905448828410678
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,13 +448,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5965766149773207596}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 69444655893319938}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7359661963850892339
 SpriteRenderer:
@@ -519,7 +538,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 69444655893319938}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1895785608039536461
 SpriteRenderer:

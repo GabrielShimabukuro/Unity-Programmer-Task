@@ -57,32 +57,42 @@ public class TabGroup : MonoBehaviour
 
     public void OnTabSelected(TabButton button)
     {
-        selectedTab = button;
-        ResetTabs();
-        button.background.sprite = tabActive;
+        Debug.Log(selectedTab + "/" + button);
+        if(selectedTab != button)
+        {
+            selectedTab = button;
+            ResetTabs();
+            button.background.sprite = tabActive;
        
-        //IMPORTANT! because this system uses the Sibling Index the tabs and panels needs to be on the same order.
-        int index = button.transform.GetSiblingIndex();
-        for (int i = 0; i < objectsToSwap.Count; i++)
-        {
-            if(i == index)
+            //IMPORTANT! because this system uses the Sibling Index the tabs and panels needs to be on the same order.
+            int index = button.transform.GetSiblingIndex();
+            for (int i = 0; i < objectsToSwap.Count; i++)
             {
-                objectsToSwap[i].SetActive(true);
-            }
-            else
-            {
-                objectsToSwap[i].SetActive(false);
-            }
-        }    
+                if(i == index)
+                {
+                    objectsToSwap[i].SetActive(true);
+                }
+                else
+                {
+                    objectsToSwap[i].SetActive(false);
+                }
+            }    
 
-        if(selectedTab == inventoryTab)
-        {
-            shopManager.InventoryOpen();
+            if(inventoryPage.gameObject.activeSelf)
+            {
+                if(selectedTab == inventoryTab)
+                {
+                    shopManager.InventoryOpen();
+                }
+                else
+                {
+                    shopManager.InventoryClose();
+                }
+            }
         }
-        else
-        {
-            shopManager.InventoryClose();
-        }
+
+        
+        
         
         
     }

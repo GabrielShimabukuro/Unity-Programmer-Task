@@ -17,5 +17,6 @@ MonoBehaviour:
   Name: Green Shoes
   Description: 
   Sprite: {fileID: 2037321568, guid: f7c4b40871ef24b4c8f292ba5df75bf1, type: 3}
+  SpriteSheet: {fileID: 2037321568, guid: f7c4b40871ef24b4c8f292ba5df75bf1, type: 3}
   Price: 300
   sellAmount: 10

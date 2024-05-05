@@ -17,5 +17,6 @@ MonoBehaviour:
   Name: Green Pants
   Description: 
   Sprite: {fileID: 2037321568, guid: d9c8fc04dc83c2d408c787f6b910ff0c, type: 3}
+  SpriteSheet: {fileID: 2037321568, guid: d9c8fc04dc83c2d408c787f6b910ff0c, type: 3}
   Price: 300
   sellAmount: 10

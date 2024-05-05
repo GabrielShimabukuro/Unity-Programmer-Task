@@ -29,31 +29,15 @@ public class ShopManager : MonoBehaviour
     public int totalValue;
 
     public TextMeshProUGUI playerCoinUI;
-
+    private PlayerSkin playerSkin;
 
     private void Start()
     {
-      
+        playerSkin = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSkin>(); 
         playerCoinUI.text = GameManager.instance._playerCoin.ToString();
         buyUI.text = "Buy";
 
-        inventoryitems = GameManager.instance._playerInventory;
-        //Load Game Manager Inventory
-        for (int i = 0; i < inventoryitems.Count; i++)
-        {
-            GameObject instance_InventoryItem = Instantiate(itemPrefab, inventoryContainer.position, Quaternion.identity);
-            instance_InventoryItem.transform.SetParent(inventoryContainer);
-            instance_InventoryItem.transform.localScale = Vector3.one;
-            
-
-            ItemButton itemButton = instance_InventoryItem.AddComponent<ItemButton>();
-            itemButton.item = inventoryitems[i];
-
-            itemButton.shopManager = this;
-
-            instance_InventoryItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = inventoryitems[i].Price.ToString();
-            instance_InventoryItem.transform.GetChild(0).GetComponent<Image>().sprite = inventoryitems[i].Sprite;
-        }
+        UpdateInventory();
 
         for (int i = 0; i < items.Count; i++)
         {
@@ -94,11 +78,36 @@ public class ShopManager : MonoBehaviour
     //and to not have to check every frame if something changed
     public void InventoryOpen()
     {
+        UpdateInventory();
+        Debug.Log("Open");
         buyUI.text = "Sell";
         inventoryIsActive = true;
     }
+
+    public void UpdateInventory()
+    {
+        inventoryitems = GameManager.instance._playerInventory;
+        //Load Game Manager Inventory
+        for (int i = 0; i < inventoryitems.Count; i++)
+        {
+            GameObject instance_InventoryItem = Instantiate(itemPrefab, inventoryContainer.position, Quaternion.identity);
+            instance_InventoryItem.transform.SetParent(inventoryContainer);
+            instance_InventoryItem.transform.localScale = Vector3.one;
+
+
+            ItemButton itemButton = instance_InventoryItem.AddComponent<ItemButton>();
+            itemButton.item = inventoryitems[i];
+
+            itemButton.shopManager = this;
+
+            instance_InventoryItem.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = inventoryitems[i].Price.ToString();
+            instance_InventoryItem.transform.GetChild(0).GetComponent<Image>().sprite = inventoryitems[i].Sprite;
+        }
+    }
+
     public void InventoryClose()
     {
+        Debug.Log("Close");
         buyUI.text = "Buy";
         inventoryIsActive = false;
     }
@@ -124,15 +133,18 @@ public class ShopManager : MonoBehaviour
         }
 
         playerCoinUI.text = GameManager.instance._playerCoin.ToString();
+        priceUI.text = "0";
+        totalValue = 0;
         UpdateItems(buttonsItems);
        
         
     }
     public void UpdateItems(List<GameObject> itemsButtons)
     {
-        for (int i = 0; i < items.Count; i++) 
+
+        for (int i = 0; i < selectedItems.Count; i++) 
         {
-            if(inventoryIsActive)
+            if(!inventoryIsActive)
             {
                 GameManager.instance._playerInventory.Add(selectedItems[i]);
             }
@@ -146,6 +158,28 @@ public class ShopManager : MonoBehaviour
 
     public void CheckBodyPart(Item currentItem)
     {
+        if(inventoryIsActive)
+        {
+            switch (currentItem.itemType)
+            {
+                case ItemType.Hair:
+                    playerSkin.clothPieces[0].sprite = currentItem.SpriteSheet;
+                    break;
+                case ItemType.Hat:
+                    playerSkin.clothPieces[1].sprite = currentItem.SpriteSheet;
+                    break;
+                case ItemType.Shirt:
+                    playerSkin.clothPieces[2].sprite = currentItem.SpriteSheet;
+                    break;
+                case ItemType.Pants:
+                    playerSkin.clothPieces[3].sprite = currentItem.SpriteSheet;
+                    break;
+                case ItemType.Shoes:
+                    playerSkin.clothPieces[4].sprite = currentItem.SpriteSheet;
+                    break;
+            }
+        }
+        
         switch (currentItem.itemType)
         {
             case ItemType.Hair:
@@ -170,7 +204,10 @@ public class ShopManager : MonoBehaviour
                 break;
 
         }
+        
+       
     }
+
 
 }
 //I made the ItemButton class on the script of the shop to be easier to change 
@@ -191,6 +228,8 @@ class ItemButton: MonoBehaviour
         {
             Selected = true;
             shopManager.AddItem(gameObject, item);
+            shopManager.CheckBodyPart(item);
+
             Debug.Log("You sold the item for:" + item.sellAmount);
         }
         else

@@ -20,6 +20,10 @@ public class InteractOnCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        event_onTrigger.Invoke();
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            event_onTrigger.Invoke();
+        }
+        
     }
 }
