@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 0
   Name: Green Shirt
   Description: 
-  Sprite: {fileID: 2037321568, guid: 3b3ff2bd1ba25b1499bf5be9d1219e83, type: 3}
+  Sprite: {fileID: 21300000, guid: f74a6808c38443e4ca14ed22201160ad, type: 3}
   SpriteSheet: {fileID: 2037321568, guid: 3b3ff2bd1ba25b1499bf5be9d1219e83, type: 3}
   Price: 300
   sellAmount: 10

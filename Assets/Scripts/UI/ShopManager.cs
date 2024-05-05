@@ -34,7 +34,7 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         playerSkin = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSkin>(); 
-        playerCoinUI.text = GameManager.instance._playerCoin.ToString();
+        playerCoinUI.text = GameManager.instance._playerCoin.ToString() + "$";
         buyUI.text = "Buy";
 
         UpdateInventory();
@@ -78,10 +78,20 @@ public class ShopManager : MonoBehaviour
     //and to not have to check every frame if something changed
     public void InventoryOpen()
     {
+        ResetBodyPart();
         UpdateInventory();
         Debug.Log("Open");
         buyUI.text = "Sell";
         inventoryIsActive = true;
+    }
+    public void ResetBodyPart()
+    {
+        foreach (Image image in playerSegments)
+        {
+            image.enabled = false;
+        }
+       
+        
     }
 
     public void UpdateInventory()
@@ -107,6 +117,7 @@ public class ShopManager : MonoBehaviour
 
     public void InventoryClose()
     {
+       
         Debug.Log("Close");
         buyUI.text = "Buy";
         inventoryIsActive = false;
@@ -132,7 +143,7 @@ public class ShopManager : MonoBehaviour
            
         }
 
-        playerCoinUI.text = GameManager.instance._playerCoin.ToString();
+        playerCoinUI.text = GameManager.instance._playerCoin.ToString() + "$";
         priceUI.text = "0";
         totalValue = 0;
         UpdateItems(buttonsItems);
@@ -184,23 +195,23 @@ public class ShopManager : MonoBehaviour
         {
             case ItemType.Hair:
                 playerSegments[0].enabled = true;
-                playerSegments[0].sprite = currentItem.Sprite; 
+                playerSegments[0].sprite = currentItem.SpriteSheet; 
                 break;
             case ItemType.Hat:
                 playerSegments[1].enabled = true;
-                playerSegments[1].sprite = currentItem.Sprite;
+                playerSegments[1].sprite = currentItem.SpriteSheet;
                 break;
             case ItemType.Shirt:
                 playerSegments[2].enabled = true;
-                playerSegments[2].sprite = currentItem.Sprite;
+                playerSegments[2].sprite = currentItem.SpriteSheet;
                 break;
             case ItemType.Pants:
                 playerSegments[3].enabled = true;
-                playerSegments[3].sprite = currentItem.Sprite;
+                playerSegments[3].sprite = currentItem.SpriteSheet;
                 break;
             case ItemType.Shoes:
                 playerSegments[4].enabled = true;
-                playerSegments[4].sprite = currentItem.Sprite;
+                playerSegments[4].sprite = currentItem.SpriteSheet;
                 break;
 
         }

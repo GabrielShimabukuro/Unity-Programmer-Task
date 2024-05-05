@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 0
   Name: Hair2
   Description: 
-  Sprite: {fileID: 2037321568, guid: 0f886c71b7afb304ab7b642c80a54299, type: 3}
+  Sprite: {fileID: 21300000, guid: 586db37a71e1aac46b82000d74b1af74, type: 3}
   SpriteSheet: {fileID: 2037321568, guid: 0f886c71b7afb304ab7b642c80a54299, type: 3}
   Price: 300
   sellAmount: 10

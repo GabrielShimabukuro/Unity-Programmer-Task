@@ -84,10 +84,11 @@ public class TabGroup : MonoBehaviour
                 {
                     shopManager.InventoryOpen();
                 }
-                else
-                {
-                    shopManager.InventoryClose();
-                }
+                
+            }
+            else
+            {
+                shopManager.InventoryClose();
             }
         }
 

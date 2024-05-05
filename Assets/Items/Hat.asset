@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 0
   Name: Hat
   Description: 
-  Sprite: {fileID: 2037321568, guid: 5d2705e892e9b1c4dbce6d4cecbc2a4a, type: 3}
+  Sprite: {fileID: 21300000, guid: dfa9045424d1b7147ba3886e1810a7f9, type: 3}
   SpriteSheet: {fileID: 2037321568, guid: 5d2705e892e9b1c4dbce6d4cecbc2a4a, type: 3}
   Price: 50
   sellAmount: 10
