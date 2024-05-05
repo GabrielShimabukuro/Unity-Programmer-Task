@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11554d3e732430f4682490458347bbc4, type: 3}
-  m_Name: Hat
+  m_Name: Hair
   m_EditorClassIdentifier: 
   itemType: 1
   id: 0
-  Name: Hat
+  Name: Hair2
   Description: 
-  Sprite: {fileID: 2037321568, guid: 5d2705e892e9b1c4dbce6d4cecbc2a4a, type: 3}
-  Price: 50
+  Sprite: {fileID: 2037321568, guid: b4ad451aa90a25c4b9d1561c64e008fc, type: 3}
+  Price: 300
   sellAmount: 10

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11554d3e732430f4682490458347bbc4, type: 3}
   m_Name: Pant
   m_EditorClassIdentifier: 
-  itemType: 1
+  itemType: 3
   id: 0
   Name: Green Pants
   Description: 
-  Sprite: {fileID: 21300000, guid: 0779ad3feec52124e97114bcbb12ef13, type: 3}
+  Sprite: {fileID: 2037321568, guid: d9c8fc04dc83c2d408c787f6b910ff0c, type: 3}
   Price: 300
   sellAmount: 10

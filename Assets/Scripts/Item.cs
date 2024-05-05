@@ -7,7 +7,7 @@ public enum ItemType
 {
     Hair,
     Hat,
-    Body,
+    Shirt,
     Pants,
     Shoes
 }

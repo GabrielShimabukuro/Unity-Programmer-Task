@@ -43,43 +43,35 @@ public class ShopManager : MonoBehaviour
         switch (currentItem.itemType)
         {
             case ItemType.Hair:
+                playerSegments[0].enabled = true;
                 playerSegments[0].sprite = currentItem.Sprite; 
                 break;
             case ItemType.Hat:
+                playerSegments[1].enabled = true;
                 playerSegments[1].sprite = currentItem.Sprite;
                 break;
-            case ItemType.Body:
+            case ItemType.Shirt:
+                playerSegments[2].enabled = true;
                 playerSegments[2].sprite = currentItem.Sprite;
                 break;
             case ItemType.Pants:
+                playerSegments[3].enabled = true;
                 playerSegments[3].sprite = currentItem.Sprite;
                 break;
             case ItemType.Shoes:
+                playerSegments[4].enabled = true;
                 playerSegments[4].sprite = currentItem.Sprite;
                 break;
 
         }
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
 //I made the ItemButton class on the script of the shop to be easier to change 
 // some things
 class ItemButton: MonoBehaviour
 {
     public Item item;
-    public int price;
     public ShopManager shopManager;
     private void Start()
     {
@@ -88,7 +80,15 @@ class ItemButton: MonoBehaviour
 
     public void BuyItem()
     {
-        shopManager.CheckBodyPart(item);
-        Debug.Log("You purchased the item for:" + item.Price);
+        if (GameManager.instance._playerCoin >= item.Price)
+        {
+            GameManager.instance.SpendCoins(item.Price);
+            shopManager.CheckBodyPart(item);     
+            Debug.Log("You purchased the item for:" + item.Price);
+        }
+
+
+
+       
     }
 }
