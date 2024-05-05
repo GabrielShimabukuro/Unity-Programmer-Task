@@ -4,16 +4,24 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class ShopManager : MonoBehaviour
 {
     public List<Item> items = new List<Item>();
     public GameObject itemPrefab;
     public Transform hatContainer;
     public List<Image> playerSegments = new List<Image>();
+   
+    public TextMeshProUGUI priceUI;
+    public TextMeshProUGUI buyUI;
 
+    public List<Item> selectedItems = new List<Item>();
+    public int totalValue;
 
     private void OnEnable()
     {
+        buyUI.text = "Buy";
+
         for (int i = 0; i < items.Count; i++)
         {
             GameObject instance_Item =  Instantiate(itemPrefab, hatContainer.position, Quaternion.identity);
@@ -37,6 +45,25 @@ public class ShopManager : MonoBehaviour
             instance_Item.transform.GetChild(0).GetComponent<Image>().sprite = items[i].Sprite;
         }
     }
+
+    private void Update()
+    {
+        
+    }
+
+    public void UpdateItems(Item addedItem)
+    {
+        selectedItems.Add(addedItem);
+        totalValue += addedItem.Price;
+        priceUI.text = totalValue.ToString();
+    }
+
+    public void SpendTotal()
+    {
+        GameManager.instance.SpendCoins(totalValue);
+        selectedItems.Clear();
+    }
+
 
     public void CheckBodyPart(Item currentItem)
     {
@@ -73,6 +100,7 @@ class ItemButton: MonoBehaviour
 {
     public Item item;
     public ShopManager shopManager;
+    public bool Selected;
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(BuyItem);
@@ -80,15 +108,14 @@ class ItemButton: MonoBehaviour
 
     public void BuyItem()
     {
-        if (GameManager.instance._playerCoin >= item.Price)
+        if(GameManager.instance._playerCoin >= item.Price && Selected == false)
         {
-            GameManager.instance.SpendCoins(item.Price);
+            Selected = true;
+            shopManager.UpdateItems(item);
+            
             shopManager.CheckBodyPart(item);     
             Debug.Log("You purchased the item for:" + item.Price);
         }
-
-
-
        
     }
 }
